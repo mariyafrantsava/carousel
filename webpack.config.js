@@ -46,7 +46,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Webpack App",
+            title: "Carousel",
             buildTime: new Date().toISOString(),
             template: "public/index.html"
         }),
