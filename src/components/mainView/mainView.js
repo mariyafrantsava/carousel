@@ -7,7 +7,7 @@ const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex }) => {
     console.log(picData, 'MainView')
 
     const elements = picData.map((item) => {
-        const { src, id, display, ...itemProps } = item;
+        const { slide, id, display, ...itemProps } = item;
 
         let classNames = 'mySlides';
         if(display){
@@ -17,11 +17,9 @@ const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex }) => {
         }
 
         return (
-            // <div key={pictureIndex} className={classNames}>
             <div className={classNames}>
                 <div className="numberText">`{id + 1} / {picData.length}`</div>
-                {/*<img src={src} className="view" alt={id} onClick={() => console.log(id +1)}/>*/}
-                <div>{src}</div>
+                <div>{slide}</div>
             </div>
         );
     });
