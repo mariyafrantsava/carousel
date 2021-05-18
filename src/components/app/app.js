@@ -66,7 +66,7 @@ export default class App extends Component {
                         pictureIndex: calcPictureIndex
                     };
             });
-        };
+    };
 
     render() {
         console.log(this.state.pictureData[0].src, 'APP');

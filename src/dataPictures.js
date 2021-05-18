@@ -18,7 +18,7 @@ const dataPictures =  [
                         corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
                         qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
                         nulla pariatur?"
-                        imageSrc="img_woods_wide.jpg"
+                        imageSrc="img_mountains_wide.jpg"
                         nameSlide="Slide1"
                     />,
         display: true },

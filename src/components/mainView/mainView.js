@@ -26,7 +26,9 @@ const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex }) => {
 
     return(
         <div className="mainContainer">
-            <div className="container">
+            <div className="container"
+                 onPointerDown={(e) => console.log('onPointerDown', e.clientX )}
+                 onPointerUp={(e) => console.log('onPointerUp', e.clientX )}>
                 {elements}
                 <a className="prev" onClick={onTogglePrev}>❮</a>
                 <a className="next" onClick={onToggleNext}>❯</a>
