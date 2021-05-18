@@ -18,20 +18,19 @@ const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex }) => {
 
         return (
             <div className={classNames}>
-                <div className="numberText">`{id + 1} / {picData.length}`</div>
+                <div className="numberText">{id + 1} / {picData.length}</div>
                 <div>{slide}</div>
             </div>
         );
     });
 
     return(
-        <div>
-            <p>MainView!!!</p>
+        <div className="mainContainer">
             <div className="container">
                 {elements}
+                <a className="prev" onClick={onTogglePrev}>❮</a>
+                <a className="next" onClick={onToggleNext}>❯</a>
             </div>
-            <a className="prev" onClick={onTogglePrev}>❮</a>
-            <a className="next" onClick={onToggleNext}>❯</a>
         </div>
     );
 };

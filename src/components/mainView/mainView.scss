@@ -1,8 +1,9 @@
- .view{
-   width: 100%;
- }
-
- .isHidden{
+.mainContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+.isHidden{
    display: none;
  }
 
