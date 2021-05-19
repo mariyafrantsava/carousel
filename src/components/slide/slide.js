@@ -7,7 +7,7 @@ const Slide = ({id, nameSlide, text, imageSrc}) => {
     const style = {
         backgroundImage: `url(${IMAGE_PATH}${imageSrc})`,
         // width: '100%',
-        height: '600px',
+        height: '33.4rem',
         width: 'fit-content'
     };
     return(

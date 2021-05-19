@@ -3,7 +3,7 @@ import React from "react";
 import './mainView.scss';
 import Preview from "../preview";
 
-const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex }) => {
+const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex, onToggleCurrentPicture }) => {
     console.log(pictureIndex, 'MainView')
     console.log(picData, 'MainView')
 
@@ -16,8 +16,6 @@ const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex }) => {
         }else {
             classNames += ' isHidden';
         }
-
-
 
         return (
             <div className={classNames}>
@@ -36,7 +34,10 @@ const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex }) => {
                 <a className="prev" onClick={onTogglePrev}>❮</a>
                 <a className="next" onClick={onToggleNext}>❯</a>
             </div>
-            <Preview picData={picData}/>
+            <Preview
+                picData={picData}
+                pictureIndex={pictureIndex}
+                onToggleCurrentPicture={onToggleCurrentPicture}/>
         </div>
     );
 };

@@ -3,22 +3,26 @@ import './preview.scss';
 
 const IMAGE_PATH = 'public/assets/images/';
 
-const Preview = ({picData}) => {
-    // const elements = picData.map((item) => {
-    //     const {slide} = item;
-    //     return(
-    //         <div></div>
-    //     )
-    // };
+const Preview = ({picData, pictureIndex, onToggleCurrentPicture}) => {
+    const elements = picData.map((item) => {
+        const {imageSrc} = item.slide.props;
+        const {id} = item;
+
+        let classNames = 'preview';
+        if(id === pictureIndex){
+            classNames += ' active';
+        }
+
+        return(
+            <img className={classNames} src={`${IMAGE_PATH}${imageSrc}`}  onClick={() => onToggleCurrentPicture(id)} alt="Лес"/>
+        )
+    });
     return(
-        <div>
-            <p>Preview</p>
             <div className="row">
                 <div className="column">
-                    {/*<img className="demo cursor" src={`${IMAGE_PATH}${imageSrc}`} style="width:100%" onClick="currentSlide(1)" alt="Лес"/>*/}
+                    {elements}
                 </div>
             </div>
-        </div>
     );
 };
 export default Preview;

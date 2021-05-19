@@ -68,6 +68,18 @@ export default class App extends Component {
             });
     };
 
+    onToggleCurrentPicture = (id) => {
+        this.setState(({ pictureData }) => {
+
+            let calcPictureIndex = id;
+
+            return {
+                pictureData: this.toggleProperty(pictureData, calcPictureIndex, 'display'),
+                pictureIndex: calcPictureIndex
+            };
+        });
+    }
+
     render() {
         console.log(this.state.pictureData[0].src, 'APP');
         const { pictureData, pictureIndex } = this.state;
@@ -79,6 +91,7 @@ export default class App extends Component {
                     onToggleNext={ () => this.onTogglePicture(pictureIndex, true) }
                     onTogglePrev={ () => this.onTogglePicture(pictureIndex, false) }
                     pictureIndex={ pictureIndex }
+                    onToggleCurrentPicture={this.onToggleCurrentPicture}
                     />
             </div>
         );
