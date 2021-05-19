@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Kanit:wght@200&display=swap');
 
 body {
   margin: 0;
+  font-family: 'Kanit', sans-serif;
 }
 
 * {
@@ -16,23 +18,20 @@ img {
   justify-content: center;
 }
 
-/* Расположите контейнер с изображением (необходимо расположить стрелки влево и вправо) */
 .container {
   position: relative;
   width: 60rem;
 }
 
-/* Добавление указателя при наведении указателя мыши на миниатюры изображений */
 .cursor {
   cursor: pointer;
 }
 
-/* Вперед и назад кнопки */
 .prev,
 .next {
   cursor: pointer;
   position: absolute;
-  top: 40%;
+  top: 50%;
   width: auto;
   padding: 16px;
   margin-top: -50px;
@@ -44,19 +43,16 @@ img {
   -webkit-user-select: none;
 }
 
-/* Расположите кнопку "вперед" справа */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-/* При наведении курсора мыши добавьте черный цвет фона с небольшим прозрачным слоем */
 .prev:hover,
 .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Контейнер для текста изображения */
 .caption-container {
   text-align: center;
   background-color: #222;
@@ -70,13 +66,11 @@ img {
   clear: both;
 }
 
-/* Шесть колонн бок о бок */
 .column {
   float: left;
   width: 16.66%;
 }
 
-/* Добавьте эффект прозрачности для миниатюрных изображений */
 .demo {
   opacity: 0.6;
 }

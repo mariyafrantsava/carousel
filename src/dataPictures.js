@@ -18,8 +18,9 @@ const dataPictures =  [
                         corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
                         qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
                         nulla pariatur?"
-                        imageSrc="img_mountains_wide.jpg"
-                        nameSlide="Slide1"
+                        // imageSrc="img_mountains_wide.jpg"
+                        imageSrc="mountains_148901_12.jpg"
+                        nameSlide="Slide 1"
                     />,
         display: true },
     { id: 1, slide: <Slide
@@ -27,8 +28,9 @@ const dataPictures =  [
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                         culpa qui officia deserunt mollit anim id est laborum."
-                        imageSrc="img_5terre_wide.jpg"
-                        nameSlide="Slide2"
+                        // imageSrc="img_5terre_wide.jpg"
+                        imageSrc="beautiful_sky_150334_12.jpg"
+                        nameSlide="Slide 2"
                     />,
         display: false },
     { id: 2, slide: <Slide
@@ -42,8 +44,9 @@ const dataPictures =  [
                         a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some
                         advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure
                         that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure"
-                        imageSrc="img_nature_wide.jpg"
-                        nameSlide="Slide3"
+                        // imageSrc="img_nature_wide.jpg"
+                        imageSrc="waterfalls_150185_12.jpg"
+                        nameSlide="Slide 3"
                     />,
         display: false },
 ];

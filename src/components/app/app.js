@@ -73,7 +73,7 @@ export default class App extends Component {
         const { pictureData, pictureIndex } = this.state;
         return(
             <div>
-                <p className="title">Carousel</p>
+                <h2 className="title">Carousel</h2>
                 <MainView
                     picData={ pictureData }
                     onToggleNext={ () => this.onTogglePicture(pictureIndex, true) }

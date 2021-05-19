@@ -4,12 +4,25 @@ import './slide.scss';
 const IMAGE_PATH = 'public/assets/images/';
 
 const Slide = ({id, nameSlide, text, imageSrc}) => {
+    const style = {
+        backgroundImage: `url(${IMAGE_PATH}${imageSrc})`,
+        // width: '100%',
+        height: '600px',
+        width: 'fit-content'
+    };
     return(
         <div>
-            <img src={`${IMAGE_PATH}${imageSrc}`} className="view" alt={id}/>
-            <p>{nameSlide}</p>
-            <p>{text}</p>
+            <div className="view" style={style}>
+                {/*<img src={`${IMAGE_PATH}${imageSrc}`} className="view" alt={id}/>*/}
+                {/*<p>{nameSlide}</p>*/}
+                <div className="contentFirst"></div>
+                <div className="contentSecond">
+                    <p className="textSlide">{text}</p>
+                </div>
+            </div>
+            <div className="nameSlide">{nameSlide}</div>
         </div>
     );
 }
 export default Slide;
+export {IMAGE_PATH};
