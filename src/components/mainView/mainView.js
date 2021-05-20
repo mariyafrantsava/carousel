@@ -3,9 +3,17 @@ import React from "react";
 import './mainView.scss';
 import Preview from "../preview";
 
-const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex, onToggleCurrentPicture }) => {
-    console.log(pictureIndex, 'MainView')
-    console.log(picData, 'MainView')
+const MainView = ({
+                    picData,
+                    onToggleNext,
+                    onTogglePrev,
+                    pictureIndex,
+                    onToggleCurrentPicture,
+                    saveCoordinatesSwipe,
+                    handleSwipe
+}) => {
+    // console.log(pictureIndex, 'MainView')
+    // console.log(picData, 'MainView')
 
     const elements = picData.map((item) => {
         const { slide, id, display, ...itemProps } = item;
@@ -28,8 +36,10 @@ const MainView = ({ picData, onToggleNext, onTogglePrev, pictureIndex, onToggleC
     return(
         <div className="mainContainer">
             <div className="container"
-                 onPointerDown={(e) => console.log('onPointerDown', e.clientX )}
-                 onPointerUp={(e) => console.log('onPointerUp', e.clientX )}>
+                 // onPointerDown={(e) => console.log('onPointerDown', e.clientX )}
+                 onPointerDown={(e) => saveCoordinatesSwipe(e.clientX, e.clientY)}
+                 // onPointerUp={(e) => console.log('onPointerUp', e.clientX )}>
+                 onPointerUp={(e) => handleSwipe(e.clientX, e.clientY)}>
                 {elements}
                 <a className="prev" onClick={onTogglePrev}>❮</a>
                 <a className="next" onClick={onToggleNext}>❯</a>

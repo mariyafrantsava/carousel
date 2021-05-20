@@ -7,7 +7,9 @@ import dataPictures from "../../dataPictures";
 export default class App extends Component {
     state = {
         pictureData: dataPictures,
-        pictureIndex: 0
+        pictureIndex: 0,
+        x: 0,
+        y: 0
     };
 
     toggleProperty(arr, id, propName) {
@@ -80,8 +82,38 @@ export default class App extends Component {
         });
     }
 
+    saveCoordinatesSwipe = (eX, eY) => {
+        this.setState(() => {
+            return{
+                x: eX,
+                y: eY
+            };
+        });
+    }
+
+    handleSwipe = (eventX, eventY) => {
+        const { pictureIndex, x, y } = this.state;
+        // console.log('state', x, y)
+        // console.log('func', eventX, eventY)
+
+        const differenceX = Math.abs(eventX - x) ;
+        const differenceY = Math.abs(eventY - y);
+
+        if(differenceX > differenceY && eventX > x){
+            return this.onTogglePicture(pictureIndex, true)
+        }
+        if(differenceX > differenceY && eventX < x){
+            return this.onTogglePicture(pictureIndex, false)
+        }
+        if(differenceY > differenceX && eventY > y){
+            return console.log('down')
+        }
+        if(differenceY > differenceX && eventY < y){
+            return console.log('up')
+        }
+    }
+
     render() {
-        console.log(this.state.pictureData[0].src, 'APP');
         const { pictureData, pictureIndex } = this.state;
         return(
             <div>
@@ -91,7 +123,9 @@ export default class App extends Component {
                     onToggleNext={ () => this.onTogglePicture(pictureIndex, true) }
                     onTogglePrev={ () => this.onTogglePicture(pictureIndex, false) }
                     pictureIndex={ pictureIndex }
-                    onToggleCurrentPicture={this.onToggleCurrentPicture}
+                    onToggleCurrentPicture={ this.onToggleCurrentPicture }
+                    saveCoordinatesSwipe={ this.saveCoordinatesSwipe }
+                    handleSwipe={ this.handleSwipe }
                     />
             </div>
         );
