@@ -1,27 +1,30 @@
 import React from "react";
 import './slide.scss';
 
+import dataPictures from "../../dataPictures";
 const IMAGE_PATH = 'public/assets/images/';
 
-const Slide = ({id, nameSlide, text, imageSrc}) => {
+const Slide = ({nameSlide, text, imageSrc}) => {
     const style = {
         backgroundImage: `url(${IMAGE_PATH}${imageSrc})`,
-        // width: '100%',
         height: '33.4rem',
         width: 'fit-content'
     };
     return(
-        <div>
+    <React.Fragment>
             <div className="view" style={style}>
                 {/*<img src={`${IMAGE_PATH}${imageSrc}`} className="view" alt={id}/>*/}
                 {/*<p>{nameSlide}</p>*/}
-                <div className="contentFirst"></div>
-                <div className="contentSecond">
-                    <p className="textSlide">{text}</p>
+                <div className="slideContentFirst"></div>
+                <div className="slideContentSecond">
+                    <div className="slideContentSecondText">
+                        <p className="textSlide">{text}</p>
+                        <div className="numberSlide">{'id' + 1} / {dataPictures.length}</div>
+                    </div>
                 </div>
             </div>
             <div className="nameSlide">{nameSlide}</div>
-        </div>
+        </React.Fragment>
     );
 }
 export default Slide;
