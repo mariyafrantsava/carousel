@@ -4,12 +4,16 @@ import './app.scss';
 import MainView from '../mainView';
 import dataPictures from "../../dataPictures";
 
+const WIDTH_FRAME = 60;
+
 export default class App extends Component {
     state = {
         pictureData: dataPictures,
         pictureIndex: 0,
         x: 0,
-        y: 0
+        y: 0,
+        amountShowSlides: 1,
+        positionFrame: '0rem'
     };
 
     toggleProperty(arr, id, propName) {
@@ -46,38 +50,44 @@ export default class App extends Component {
 
     onTogglePicture = (pictureIndex, isToggleNext) => {
 
-            this.setState(({ pictureData }) => {
-
+        this.setState(({pictureData, positionFrame, amountShowSlides}) => {
+                let calcPositionFrame;
                 let calcPictureIndex;
 
                 if(pictureIndex === 0 && !isToggleNext){
                     calcPictureIndex = pictureData.length-1;
+                    calcPositionFrame = -WIDTH_FRAME * (pictureData.length - 1) + 'rem';
                 }
                 if( pictureIndex >= 0 && pictureIndex < pictureData.length-1 && isToggleNext){
                     calcPictureIndex = pictureIndex + 1;
+                    calcPositionFrame = parseInt(positionFrame) - WIDTH_FRAME * amountShowSlides + 'rem';
                 }
                 if(pictureIndex > 0 && !isToggleNext) {
                     calcPictureIndex = pictureIndex - 1;
+                    calcPositionFrame = parseInt(positionFrame) + WIDTH_FRAME * amountShowSlides + 'rem';
                 }
                 if(pictureIndex === pictureData.length-1 && isToggleNext){
                     calcPictureIndex = 0;
+                    calcPositionFrame = '0rem';
                 }
 
-                    return {
-                        pictureData: this.toggleProperty(pictureData, calcPictureIndex, 'display'),
-                        pictureIndex: calcPictureIndex
-                    };
-            });
+            return {
+                pictureIndex: calcPictureIndex,
+                // amountShowSlides: 1,
+                positionFrame: calcPositionFrame
+                };
+        });
     };
 
     onToggleCurrentPicture = (id) => {
-        this.setState(({ pictureData }) => {
+        this.setState(({ amountShowSlides }) => {
 
-            let calcPictureIndex = id;
+            const calcPictureIndex = id;
+            let calcPositionFrame = -WIDTH_FRAME * id * amountShowSlides + 'rem';
 
             return {
-                pictureData: this.toggleProperty(pictureData, calcPictureIndex, 'display'),
-                pictureIndex: calcPictureIndex
+                pictureIndex: calcPictureIndex,
+                positionFrame: calcPositionFrame
             };
         });
     }
@@ -114,7 +124,7 @@ export default class App extends Component {
     }
 
     render() {
-        const { pictureData, pictureIndex } = this.state;
+        const { pictureData, pictureIndex, positionFrame } = this.state;
         return(
             <div>
                 <h2 className="title">Carousel</h2>
@@ -126,6 +136,7 @@ export default class App extends Component {
                     onToggleCurrentPicture={ this.onToggleCurrentPicture }
                     saveCoordinatesSwipe={ this.saveCoordinatesSwipe }
                     handleSwipe={ this.handleSwipe }
+                    positionFrame={positionFrame}
                     />
             </div>
         );

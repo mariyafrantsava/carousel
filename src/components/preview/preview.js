@@ -14,8 +14,8 @@ const Preview = ({picData, pictureIndex, onToggleCurrentPicture}) => {
         }
 
         return(
-            <img className={classNames} src={`${IMAGE_PATH}${imageSrc}`}  onClick={() => onToggleCurrentPicture(id)} alt="Лес"/>
-        )
+            <img className={classNames} src={`${IMAGE_PATH}${imageSrc}`} onClick={() => onToggleCurrentPicture(id)} alt={id}/>
+        );
     });
     return(
             <div className="row">

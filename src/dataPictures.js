@@ -12,21 +12,23 @@ const dataPictures =  [
                         corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
                         qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
                         nulla pariatur?"
-                        // imageSrc="img_mountains_wide.jpg"
                         imageSrc="mountains_148901_12.jpg"
                         nameSlide="Slide 1"
+                        numberSlide="1"
                     />,
-        display: true },
+        display: true
+    },
     { id: 1, slide: <Slide
                         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                         culpa qui officia deserunt mollit anim id est laborum."
-                        // imageSrc="img_5terre_wide.jpg"
                         imageSrc="beautiful_sky_150334_12.jpg"
                         nameSlide="Slide 2"
+                        numberSlide="2"
                     />,
-        display: false },
+        display: false
+    },
     { id: 2, slide: <Slide
                         text="But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
                         was born and I will give you a complete account of the system, and expound the actual teachings of
@@ -38,11 +40,12 @@ const dataPictures =  [
                         a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some
                         advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure
                         that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure"
-                        // imageSrc="img_nature_wide.jpg"
                         imageSrc="waterfalls_150185_12.jpg"
                         nameSlide="Slide 3"
+                        numberSlide="3"
                     />,
-        display: false },
+        display: false
+    },
 ];
 
 export default dataPictures;

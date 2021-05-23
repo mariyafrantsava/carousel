@@ -21,7 +21,7 @@
 }
 
 .gallery {
-  width:60rem;
+  width:180rem;
   overflow: hidden;
 }
 
@@ -34,35 +34,8 @@
   transition: margin-left 1s;
 }
 
-//.view {
-//  height: 33.4rem;
-//  width: fit-content;
-//}
-
 .slide{
   display: inline-block;
   width: 60rem;
 }
-//.arrow {
-//  position: absolute;
-//  top: 60px;
-//  display: block;
-//}
-
-/* .arrow:focus {
-  outline: none;
-} */
-
-//.arrow:hover {
-//  background: #ccc;
-//  cursor: pointer;
-//}
-//
-//.prev {
-//  left: 7px;
-//}
-//
-//.next {
-//  right: 7px;
-//}
 
