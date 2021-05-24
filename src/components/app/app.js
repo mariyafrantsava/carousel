@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import './app.scss';
 import MainView from '../mainView';
 import dataPictures from "../../dataPictures";
+import SelectShowSlides from "../selectShowSlides";
 
 const WIDTH_FRAME = 60;
 
@@ -15,38 +16,6 @@ export default class App extends Component {
         amountShowSlides: 1,
         positionFrame: '0rem'
     };
-
-    toggleProperty(arr, id, propName) {
-
-        const idx = arr.findIndex((el) => el.id === id);
-        const oldItem = arr[idx];
-
-        arr = arr.map((item) => {
-            return (
-                {
-                    ...item,
-                    [propName]: false
-                }
-            );
-        })
-
-        const newItem = {...oldItem,
-            [propName]: true
-        };
-
-        if(id === 0){
-            return [
-                newItem,
-                ...arr.slice(idx + 1)
-            ];
-        }else {
-            return [
-                ...arr.slice(0, idx),
-                newItem,
-                ...arr.slice(idx + 1)
-            ];
-        }
-    }
 
     onTogglePicture = (pictureIndex, isToggleNext) => {
 
@@ -123,11 +92,58 @@ export default class App extends Component {
         }
     }
 
+    toggleProperty(arr, id, propName) {
+
+        const idx = arr.findIndex((el) => el.id === id);
+        const oldItem = arr[idx];
+
+        arr = arr.map((item) => {
+            return (
+                {
+                    ...item,
+                    [propName]: false
+                }
+            );
+        })
+
+        const newItem = {...oldItem,
+            [propName]: true
+        };
+
+        if(id === 0){
+            return [
+                newItem,
+                ...arr.slice(idx + 1)
+            ];
+        }else {
+            return [
+                ...arr.slice(0, idx),
+                newItem,
+                ...arr.slice(idx + 1)
+            ];
+        }
+    }
+
+    changeAmountShowSlides = () => {
+        console.log('changeAmountShowSlides')
+
+        // this.setState(({ pictureData }) => {
+        //
+        //     return {
+        //         pictureData: this.toggleProperty(pictureData, calcPictureIndex, 'display'),
+        //         pictureIndex: calcPictureIndex
+        //     };
+        // });
+    }
+
     render() {
-        const { pictureData, pictureIndex, positionFrame } = this.state;
+        const { pictureData, pictureIndex, positionFrame, amountShowSlides } = this.state;
         return(
             <div>
                 <h2 className="title">Carousel</h2>
+                <SelectShowSlides
+                    amountShowSlides={amountShowSlides}
+                    changeAmountShowSlides={ this.changeAmountShowSlides }/>
                 <MainView
                     picData={ pictureData }
                     onToggleNext={ () => this.onTogglePicture(pictureIndex, true) }

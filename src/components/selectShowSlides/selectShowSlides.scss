@@ -1,0 +1,19 @@
+.selectShowSlidesBlock{
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.selectBlock{
+  background-color: transparent;
+  border: none;
+}
+
+.selectBlock:hover {
+  cursor: pointer;
+}
+
+.selectBlock:focus {
+  outline: none;
+  color: #1a237e;
+}
