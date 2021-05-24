@@ -4,7 +4,7 @@ import './slide.scss';
 import dataPictures from "../../dataPictures";
 const IMAGE_PATH = 'public/assets/images/';
 
-const Slide = ({ text, imageSrc, nameSlide, numberSlide}) => {
+const Slide = ({ text, imageSrc, nameSlide, numberSlide, amountShowSlides}) => {
     const style = {
         backgroundImage: `url(${IMAGE_PATH}${imageSrc})`,
         height: '33.4rem',

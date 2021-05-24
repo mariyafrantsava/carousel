@@ -4,12 +4,14 @@ import './app.scss';
 import MainView from '../mainView';
 import dataPictures from "../../dataPictures";
 import SelectShowSlides from "../selectShowSlides";
+import dataOptions from "../../dataOptions";
 
 const WIDTH_FRAME = 60;
 
 export default class App extends Component {
     state = {
         pictureData: dataPictures,
+        optionData: dataOptions,
         pictureIndex: 0,
         x: 0,
         y: 0,
@@ -123,25 +125,30 @@ export default class App extends Component {
             ];
         }
     }
+    add(id, pictureData){
+        console.log(pictureData, 'qwe!!!!')
+    }
 
-    changeAmountShowSlides = () => {
-        console.log('changeAmountShowSlides')
-
-        // this.setState(({ pictureData }) => {
-        //
-        //     return {
-        //         pictureData: this.toggleProperty(pictureData, calcPictureIndex, 'display'),
-        //         pictureIndex: calcPictureIndex
-        //     };
-        // });
+    changeAmountShowSlides = (e) => {
+        console.log('changeAmountShowSlides', e.target.value)
+        const id = Number(e.target.value);
+        if(id === 1){
+            this.setState(({ optionData }) => {
+                return {
+                    optionData: this.toggleProperty(optionData, id, 'defaultSelectedOption'),
+                    amountShowSlides: id + 1
+                };
+            });
+        }
     }
 
     render() {
-        const { pictureData, pictureIndex, positionFrame, amountShowSlides } = this.state;
+        const { pictureData, optionData, pictureIndex, positionFrame, amountShowSlides } = this.state;
         return(
             <div>
                 <h2 className="title">Carousel</h2>
                 <SelectShowSlides
+                    optionData={ optionData }
                     amountShowSlides={amountShowSlides}
                     changeAmountShowSlides={ this.changeAmountShowSlides }/>
                 <MainView
@@ -153,6 +160,7 @@ export default class App extends Component {
                     saveCoordinatesSwipe={ this.saveCoordinatesSwipe }
                     handleSwipe={ this.handleSwipe }
                     positionFrame={positionFrame}
+                    amountShowSlides={amountShowSlides}
                     />
             </div>
         );
