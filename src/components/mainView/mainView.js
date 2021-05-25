@@ -41,8 +41,7 @@ const MainView = ({
     const elements = picData.map((item) => {
         const { slide, id, display } = item;
 
-        // qwe();
-        // slide.props.amountShowSlides = `${amountShowSlides}`;
+        slide.props.amountShowSlides = `${amountShowSlides}`;
         // console.log('slide.props.amountShowSlides', slide.props.amountShowSlides)
 
         return (
@@ -51,6 +50,8 @@ const MainView = ({
             </div>
         );
     });
+
+    console.log('el', elements)
 
     return(
 

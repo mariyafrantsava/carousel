@@ -1,10 +1,15 @@
 import React from "react";
 import './slide.scss';
+import ReactDOM from 'react-dom';
 
 import dataPictures from "../../dataPictures";
+import SelectShowSlides from "../selectShowSlides";
 const IMAGE_PATH = 'public/assets/images/';
 
 const Slide = ({ text, imageSrc, nameSlide, numberSlide, amountShowSlides}) => {
+
+
+
     console.log(amountShowSlides, 'Slide')
     let style;
     if(amountShowSlides === '1'){

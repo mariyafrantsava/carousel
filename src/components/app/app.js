@@ -9,6 +9,7 @@ import dataOptions from "../../dataOptions";
 const WIDTH_FRAME = 60;
 
 export default class App extends Component {
+
     state = {
         pictureData: dataPictures,
         optionData: dataOptions,
@@ -126,38 +127,25 @@ export default class App extends Component {
         }
     }
 
-    toggleAmountShowSlides(arr, amount, propName) {
-
-        // const idx = arr.findIndex((el) => el.id === id);
-        // const oldItem = arr[idx];
-
-        arr = arr.map((item) => {
-            return (
-                {
-                    // ...item,
-                    [propName]: amount
-                }
-            );
-        })
-
-        // const newItem = {...oldItem,
-        //     [propName]: true
-        // };
-
-            return [
-                ...arr
-            ];
+    toggleAmountShowSlides(arr, amount) {
+        let updatedPictureData = arr.map((item) => {
+            const { slide } = item;
+            slide.props.amountShowSlides = amount;
+            item.slide = slide;
+            return item;
+        });
+        console.log(updatedPictureData, '!!!!!')
+        return updatedPictureData;
     }
 
     changeAmountShowSlides = (e) => {
-        console.log('changeAmountShowSlides', e.target.value)
         const id = Number(e.target.value);
         if(id === 1){
             this.setState(({ optionData, pictureData, amountShowSlides }) => {
                 return {
                     optionData: this.toggleProperty(optionData, id, 'defaultSelectedOption'),
                     amountShowSlides: id + 1,
-                    pictureData: this.toggleAmountShowSlides(pictureData, amountShowSlides, 'amountShowSlides')
+                    pictureData: this.toggleAmountShowSlides(pictureData, id + 1)
                 };
             });
         }

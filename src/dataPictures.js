@@ -1,8 +1,6 @@
 import React from "react";
 import Slide from '../src/components/slide';
 
-
-
 const dataPictures =  [
     { id: 0, slide: <Slide
                         text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,

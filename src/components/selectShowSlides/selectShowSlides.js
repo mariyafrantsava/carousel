@@ -3,7 +3,6 @@ import React from "react";
 import './selectShowSlides.scss';
 
 const SelectShowSlides = ({optionData, amountShowSlides, changeAmountShowSlides}) => {
-    console.log(amountShowSlides)
 
     const options = optionData.map((item) => {
         const { id, label, defaultSelectedOption } = item;
