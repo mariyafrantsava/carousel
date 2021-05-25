@@ -40,7 +40,10 @@ const MainView = ({
 
     const elements = picData.map((item) => {
         const { slide, id, display } = item;
-        console.log(slide.props.imageSrc, 'slide')
+
+        // qwe();
+        // slide.props.amountShowSlides = `${amountShowSlides}`;
+        // console.log('slide.props.amountShowSlides', slide.props.amountShowSlides)
 
         return (
             <div className="slide" style={slideStyle}>
@@ -56,7 +59,8 @@ const MainView = ({
             <div className="carousel"
                  onPointerDown={(e) => saveCoordinatesSwipe(e.clientX, e.clientY)}
                  onPointerUp={(e) => handleSwipe(e.clientX, e.clientY)}
-                 onPointerMove={(e) => console.log('hi onPointerMove', e)}>
+                 // onPointerMove={(e) => console.log('hi onPointerMove', e)}
+                >
 
                 <div className="gallery" style={galleryStyle}>
                     <div className="slides" style={style}>

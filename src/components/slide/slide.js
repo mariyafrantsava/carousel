@@ -5,14 +5,25 @@ import dataPictures from "../../dataPictures";
 const IMAGE_PATH = 'public/assets/images/';
 
 const Slide = ({ text, imageSrc, nameSlide, numberSlide, amountShowSlides}) => {
-    const style = {
-        backgroundImage: `url(${IMAGE_PATH}${imageSrc})`,
-        height: '33.4rem',
-        width: 'fit-content'
-    };
+    console.log(amountShowSlides, 'Slide')
+    let style;
+    if(amountShowSlides === '1'){
+        style = {
+            backgroundImage: `url(${IMAGE_PATH}${imageSrc})`,
+            height: '33.4rem',
+            width: 'fit-content'
+        }
+    }
+    if(amountShowSlides === '2'){
+        style = {
+            backgroundImage: `url(${IMAGE_PATH}${imageSrc})`,
+            backgroundSize: '100% 100%'
+        }
+    }
+
     return(
     <React.Fragment>
-            <div className="view" style={style}>
+            <div style={style}>
                 <div className="slideContentFirst"></div>
                 <div className="slideContentSecond">
                     <div className="slideContentSecondText">

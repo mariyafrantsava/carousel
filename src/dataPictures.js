@@ -17,6 +17,7 @@ const dataPictures =  [
                         imageSrc="mountains_148901_12.jpg"
                         nameSlide="Slide 1"
                         numberSlide="1"
+                        amountShowSlides="1"
                     />,
         display: true
     },
@@ -28,6 +29,7 @@ const dataPictures =  [
                         imageSrc="beautiful_sky_150334_12.jpg"
                         nameSlide="Slide 2"
                         numberSlide="2"
+                        amountShowSlides="1"
                     />,
         display: false
     },
@@ -45,6 +47,7 @@ const dataPictures =  [
                         imageSrc="waterfalls_150185_12.jpg"
                         nameSlide="Slide 3"
                         numberSlide="3"
+                        amountShowSlides="1"
                     />,
         display: false
     },
