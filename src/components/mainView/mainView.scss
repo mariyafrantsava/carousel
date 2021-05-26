@@ -10,27 +10,19 @@
    display: block;
  }
 
-
-
-
-
-
 .carousel {
   position: relative;
   width: 60rem;
 }
 
 .gallery {
-  //width:180rem;
   overflow: hidden;
 }
 
 .slides {
-  height: 38.4rem;
   width: 9999px;
   margin: 0;
   padding: 0;
-  //list-style: none;
   transition: margin-left 1s;
 }
 

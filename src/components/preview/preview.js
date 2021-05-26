@@ -4,9 +4,9 @@ import './preview.scss';
 const IMAGE_PATH = 'public/assets/images/';
 
 const Preview = ({picData, pictureIndex, onToggleCurrentPicture}) => {
+
     const elements = picData.map((item) => {
-        const {imageSrc} = item.slide.props;
-        const {id} = item;
+        const { id, imageSrc } = item;
 
         let classNames = 'preview';
         if(id === pictureIndex){

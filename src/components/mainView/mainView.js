@@ -2,6 +2,7 @@ import React from "react";
 
 import './mainView.scss';
 import Preview from "../preview";
+import Slide from "../slide";
 
 const MainView = ({
                     picData,
@@ -14,44 +15,28 @@ const MainView = ({
                     positionFrame,
                     amountShowSlides
 }) => {
-    const style = {
-        // marginLeft: '-130px'
-        marginLeft: `${positionFrame}`
-    };
 
+    let style;
     let galleryStyle;
-    let slideStyle;
+
     if(amountShowSlides === 1){
         galleryStyle = {
             width: '180rem'
         }
-        slideStyle = {
-            width: '60rem'
+        style = {
+            marginLeft: `${positionFrame}`,
+            height: '38.4rem'
         }
     }
     if(amountShowSlides === 2){
         galleryStyle = {
             width: '120rem'
         }
-        slideStyle = {
-            width: '30rem'
+        style = {
+            marginLeft: `${positionFrame}`,
+            height: '22.5rem'
         }
     }
-
-    const elements = picData.map((item) => {
-        const { slide, id, display } = item;
-
-        slide.props.amountShowSlides = `${amountShowSlides}`;
-        // console.log('slide.props.amountShowSlides', slide.props.amountShowSlides)
-
-        return (
-            <div className="slide" style={slideStyle}>
-                {slide}
-            </div>
-        );
-    });
-
-    console.log('el', elements)
 
     return(
 
@@ -65,7 +50,9 @@ const MainView = ({
 
                 <div className="gallery" style={galleryStyle}>
                     <div className="slides" style={style}>
-                        {elements}
+                        <Slide
+                            picData={picData}
+                            amountShowSlides={amountShowSlides}/>
                     </div>
                 </div>
 

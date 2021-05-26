@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 
+import dataPictures from "../../dataPictures";
+import dataOptions from "../../dataOptions";
+
+import toggleProperty from '../../utils';
+
 import './app.scss';
 import MainView from '../mainView';
-import dataPictures from "../../dataPictures";
 import SelectShowSlides from "../selectShowSlides";
-import dataOptions from "../../dataOptions";
+
 
 const WIDTH_FRAME = 60;
 
@@ -45,7 +49,6 @@ export default class App extends Component {
 
             return {
                 pictureIndex: calcPictureIndex,
-                // amountShowSlides: 1,
                 positionFrame: calcPositionFrame
                 };
         });
@@ -62,7 +65,7 @@ export default class App extends Component {
                 positionFrame: calcPositionFrame
             };
         });
-    }
+    };
 
     saveCoordinatesSwipe = (eX, eY) => {
         this.setState(() => {
@@ -95,57 +98,13 @@ export default class App extends Component {
         }
     }
 
-    toggleProperty(arr, id, propName) {
-
-        const idx = arr.findIndex((el) => el.id === id);
-        const oldItem = arr[idx];
-
-        arr = arr.map((item) => {
-            return (
-                {
-                    ...item,
-                    [propName]: false
-                }
-            );
-        })
-
-        const newItem = {...oldItem,
-            [propName]: true
-        };
-
-        if(id === 0){
-            return [
-                newItem,
-                ...arr.slice(idx + 1)
-            ];
-        }else {
-            return [
-                ...arr.slice(0, idx),
-                newItem,
-                ...arr.slice(idx + 1)
-            ];
-        }
-    }
-
-    toggleAmountShowSlides(arr, amount) {
-        let updatedPictureData = arr.map((item) => {
-            const { slide } = item;
-            slide.props.amountShowSlides = amount;
-            item.slide = slide;
-            return item;
-        });
-        console.log(updatedPictureData, '!!!!!')
-        return updatedPictureData;
-    }
-
     changeAmountShowSlides = (e) => {
         const id = Number(e.target.value);
         if(id === 1){
-            this.setState(({ optionData, pictureData, amountShowSlides }) => {
+            this.setState(({ optionData }) => {
                 return {
-                    optionData: this.toggleProperty(optionData, id, 'defaultSelectedOption'),
+                    optionData: toggleProperty(optionData, id, 'defaultSelectedOption'),
                     amountShowSlides: id + 1,
-                    pictureData: this.toggleAmountShowSlides(pictureData, id + 1)
                 };
             });
         }
