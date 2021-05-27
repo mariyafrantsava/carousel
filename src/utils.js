@@ -1,3 +1,4 @@
+import WIDTH_FRAME from './components/app/app';
 
 function toggleProperty(arr, id, propName) {
 
@@ -29,6 +30,17 @@ function toggleProperty(arr, id, propName) {
             ...arr.slice(idx + 1)
         ];
     }
+}
+
+export function calcPositionFrame( WIDTH_FRAME, calcPictureIndex){
+   return -WIDTH_FRAME * calcPictureIndex + 'rem';
+}
+
+export function calcPictureIndex( id, amountShowSlides ){
+    if(amountShowSlides === 2 ){
+        return id % 2 === 0 ? id / 2 : ( id - 1 ) / 2;
+    }
+    return id;
 }
 
 export default toggleProperty;

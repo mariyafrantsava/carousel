@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import dataPictures from "../../dataPictures";
 import dataOptions from "../../dataOptions";
 
-import toggleProperty from '../../utils';
+import toggleProperty, {calcPositionFrame, calcPictureIndex} from '../../utils';
 
 import './app.scss';
 import MainView from '../mainView';
@@ -61,15 +61,12 @@ export default class App extends Component {
         });
     };
 
-    onToggleCurrentPicture = (id) => {
+    onToggleCurrentPicture = (id, amountShowSlides) => {
         this.setState(() => {
-
-            const calcPictureIndex = id;
-            let calcPositionFrame = -WIDTH_FRAME * id + 'rem';
-
+            const newPictureIndex = calcPictureIndex( id, amountShowSlides );
             return {
-                pictureIndex: calcPictureIndex,
-                positionFrame: calcPositionFrame
+                pictureIndex: newPictureIndex,
+                positionFrame: calcPositionFrame( WIDTH_FRAME, newPictureIndex)
             };
         });
     };
@@ -107,14 +104,12 @@ export default class App extends Component {
 
     changeAmountShowSlides = (e) => {
         const id = Number(e.target.value);
-        if(id === 1){
             this.setState(({ optionData }) => {
                 return {
                     optionData: toggleProperty(optionData, id, 'defaultSelectedOption'),
-                    amountShowSlides: id + 1,
+                    amountShowSlides: id + 1
                 };
             });
-        }
     }
 
 

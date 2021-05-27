@@ -56,7 +56,7 @@ const Slide = ({ picData, amountShowSlides }) => {
             }
             textSlide = {
                 width: '390rem',
-                height: '5.5rem'
+                height: '5.9rem'
             }
             slideContextFirst = {
                 height: '10rem'

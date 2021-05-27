@@ -15,14 +15,16 @@ const Preview = ({picData, pictureIndex, onToggleCurrentPicture, amountShowSlide
             }
         }
         if(amountShowSlides === 2){
-            if(id === pictureIndex && id + 1 === (1 + pictureIndex)){
+            if(id === pictureIndex){
+                classNames += ' active';
+            }
+            if(id === pictureIndex + 1){
                 classNames += ' active';
             }
         }
 
-
         return(
-            <img className={classNames} src={`${IMAGE_PATH}${imageSrc}`} onClick={() => onToggleCurrentPicture(id)} alt={id}/>
+            <img className={classNames} src={`${IMAGE_PATH}${imageSrc}`} onClick={() => onToggleCurrentPicture( id, amountShowSlides )} alt={id}/>
         );
     });
     return(
