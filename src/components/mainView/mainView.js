@@ -59,7 +59,8 @@ const MainView = ({
                 <Preview
                     picData={picData}
                     pictureIndex={pictureIndex}
-                    onToggleCurrentPicture={onToggleCurrentPicture}/>
+                    onToggleCurrentPicture={onToggleCurrentPicture}
+                    amountShowSlides={amountShowSlides}/>
 
                 <a className="prev" onClick={onTogglePrev}>❮</a>
                 <a className="next" onClick={onToggleNext}>❯</a>

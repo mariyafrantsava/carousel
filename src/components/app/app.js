@@ -29,20 +29,27 @@ export default class App extends Component {
         this.setState(({pictureData, positionFrame, amountShowSlides}) => {
                 let calcPositionFrame;
                 let calcPictureIndex;
+                let lengthDataSlides
+                if(amountShowSlides === 1){
+                    lengthDataSlides = pictureData.length - 1;
+                }
+                if(amountShowSlides === 2){
+                    lengthDataSlides = (pictureData.length - 1)/2;
+                }
 
                 if(pictureIndex === 0 && !isToggleNext){
-                    calcPictureIndex = pictureData.length-1;
-                    calcPositionFrame = -WIDTH_FRAME * (pictureData.length - 1) + 'rem';
+                    calcPictureIndex = lengthDataSlides;
+                    calcPositionFrame = -WIDTH_FRAME * lengthDataSlides + 'rem';
                 }
-                if( pictureIndex >= 0 && pictureIndex < pictureData.length-1 && isToggleNext){
+                if( pictureIndex >= 0 && pictureIndex < lengthDataSlides && isToggleNext){
                     calcPictureIndex = pictureIndex + 1;
-                    calcPositionFrame = parseInt(positionFrame) - WIDTH_FRAME * amountShowSlides + 'rem';
+                    calcPositionFrame = parseInt(positionFrame) - WIDTH_FRAME + 'rem';
                 }
                 if(pictureIndex > 0 && !isToggleNext) {
                     calcPictureIndex = pictureIndex - 1;
-                    calcPositionFrame = parseInt(positionFrame) + WIDTH_FRAME * amountShowSlides + 'rem';
+                    calcPositionFrame = parseInt(positionFrame) + WIDTH_FRAME + 'rem';
                 }
-                if(pictureIndex === pictureData.length-1 && isToggleNext){
+                if(pictureIndex === lengthDataSlides && isToggleNext){
                     calcPictureIndex = 0;
                     calcPositionFrame = '0rem';
                 }
@@ -55,10 +62,10 @@ export default class App extends Component {
     };
 
     onToggleCurrentPicture = (id) => {
-        this.setState(({ amountShowSlides }) => {
+        this.setState(() => {
 
             const calcPictureIndex = id;
-            let calcPositionFrame = -WIDTH_FRAME * id * amountShowSlides + 'rem';
+            let calcPositionFrame = -WIDTH_FRAME * id + 'rem';
 
             return {
                 pictureIndex: calcPictureIndex,
