@@ -21,15 +21,17 @@ export default class App extends Component {
         x: 0,
         y: 0,
         amountShowSlides: 1,
-        positionFrame: '0rem'
+        positionFrame: '0rem',
+        isActiveMovePositionFrame: false
     };
 
     onTogglePicture = (pictureIndex, isToggleNext) => {
 
-        this.setState(({pictureData, positionFrame, amountShowSlides}) => {
+        this.setState(({ pictureData, positionFrame, amountShowSlides }) => {
                 let calcPositionFrame;
                 let calcPictureIndex;
-                let lengthDataSlides
+                let lengthDataSlides;
+
                 if(amountShowSlides === 1){
                     lengthDataSlides = pictureData.length - 1;
                 }
@@ -56,7 +58,8 @@ export default class App extends Component {
 
             return {
                 pictureIndex: calcPictureIndex,
-                positionFrame: calcPositionFrame
+                positionFrame: calcPositionFrame,
+                isActiveMovePositionFrame: false
                 };
         });
     };
@@ -72,10 +75,11 @@ export default class App extends Component {
     };
 
     saveCoordinatesSwipe = (eX, eY) => {
-        this.setState(() => {
+        this.setState(({isActiveMovePositionFrame}) => {
             return{
                 x: eX,
-                y: eY
+                y: eY,
+                isActiveMovePositionFrame: true
             };
         });
     }
@@ -100,6 +104,11 @@ export default class App extends Component {
         if(differenceY > differenceX && eventY < y){
             return console.log('up')
         }
+        this.setState(({isActiveMovePositionFrame}) => {
+            return{
+                isActiveMovePositionFrame: false
+            };
+        });
     }
 
     changeAmountShowSlides = (e) => {
@@ -110,6 +119,13 @@ export default class App extends Component {
                     amountShowSlides: id + 1
                 };
             });
+    }
+
+    movePositionFrame = () => {
+        const { isActiveMovePositionFrame } = this.state;
+        if(isActiveMovePositionFrame === true ){
+            console.log('hi onPointerMove')
+        }
     }
 
 
@@ -132,6 +148,7 @@ export default class App extends Component {
                     handleSwipe={ this.handleSwipe }
                     positionFrame={positionFrame}
                     amountShowSlides={amountShowSlides}
+                    movePositionFrame={ this.movePositionFrame }
                     />
             </div>
         );

@@ -13,7 +13,8 @@ const MainView = ({
                     saveCoordinatesSwipe,
                     handleSwipe,
                     positionFrame,
-                    amountShowSlides
+                    amountShowSlides,
+                    movePositionFrame
 }) => {
 
     let style;
@@ -45,7 +46,7 @@ const MainView = ({
             <div className="carousel"
                  onPointerDown={(e) => saveCoordinatesSwipe(e.clientX, e.clientY)}
                  onPointerUp={(e) => handleSwipe(e.clientX, e.clientY)}
-                 // onPointerMove={(e) => console.log('hi onPointerMove', e)}
+                 onPointerMove={(e) => movePositionFrame()}
                 >
 
                 <div className="gallery" style={galleryStyle}>

@@ -7,8 +7,8 @@ const Preview = ({picData, pictureIndex, onToggleCurrentPicture, amountShowSlide
 
     const elements = picData.map((item) => {
         const { id, imageSrc } = item;
-
         let classNames = 'preview';
+
         if(amountShowSlides === 1){
             if(id === pictureIndex){
                 classNames += ' active';
