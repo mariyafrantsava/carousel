@@ -3,7 +3,7 @@ import './preview.scss';
 
 const IMAGE_PATH = 'public/assets/images/';
 
-const Preview = ({picData, pictureIndex, onToggleCurrentPicture, amountShowSlides}) => {
+const Preview = ({ picData, pictureIndex, onToggleCurrentPicture, amountShowSlides }) => {
 
     const elements = picData.map((item) => {
         const { id, imageSrc } = item;

@@ -22,7 +22,7 @@ const MainView = ({
 
     if(amountShowSlides === 1){
         galleryStyle = {
-            width: '180rem'
+            width: '60rem'
         }
         style = {
             marginLeft: `${positionFrame}`,
@@ -31,7 +31,7 @@ const MainView = ({
     }
     if(amountShowSlides === 2){
         galleryStyle = {
-            width: '120rem'
+            width: '60rem'
         }
         style = {
             marginLeft: `${positionFrame}`,
@@ -46,7 +46,7 @@ const MainView = ({
             <div className="carousel"
                  onPointerDown={(e) => saveCoordinatesSwipe(e.clientX, e.clientY)}
                  onPointerUp={(e) => handleSwipe(e.clientX, e.clientY)}
-                 onPointerMove={(e) => movePositionFrame()}
+                 onPointerMove={(e) => movePositionFrame(e.clientX)}
                 >
 
                 <div className="gallery" style={galleryStyle}>

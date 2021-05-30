@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import dataPictures from "../../dataPictures";
 import dataOptions from "../../dataOptions";
 
-import toggleProperty, {calcPositionFrame, calcPictureIndex} from '../../utils';
+import toggleProperty, { calcPositionFrame, calcPictureIndex, calcMovePositionFrame, calcDifference } from '../../utils';
 
 import './app.scss';
 import MainView from '../mainView';
@@ -28,37 +28,38 @@ export default class App extends Component {
     onTogglePicture = (pictureIndex, isToggleNext) => {
 
         this.setState(({ pictureData, positionFrame, amountShowSlides }) => {
-                let calcPositionFrame;
-                let calcPictureIndex;
+                let newPositionFrame;
+                let newPictureIndex;
                 let lengthDataSlides;
 
                 if(amountShowSlides === 1){
                     lengthDataSlides = pictureData.length - 1;
+                    positionFrame = calcPositionFrame( WIDTH_FRAME, pictureIndex);
                 }
                 if(amountShowSlides === 2){
-                    lengthDataSlides = (pictureData.length - 1)/2;
+                    lengthDataSlides = Math.floor((pictureData.length - 1) / 2);
                 }
 
                 if(pictureIndex === 0 && !isToggleNext){
-                    calcPictureIndex = lengthDataSlides;
-                    calcPositionFrame = -WIDTH_FRAME * lengthDataSlides + 'rem';
+                    newPictureIndex = lengthDataSlides;
+                    newPositionFrame = -WIDTH_FRAME * lengthDataSlides + 'rem';
                 }
                 if( pictureIndex >= 0 && pictureIndex < lengthDataSlides && isToggleNext){
-                    calcPictureIndex = pictureIndex + 1;
-                    calcPositionFrame = parseInt(positionFrame) - WIDTH_FRAME + 'rem';
+                    newPictureIndex = pictureIndex + 1;
+                    newPositionFrame = parseInt(positionFrame) - WIDTH_FRAME + 'rem';
                 }
                 if(pictureIndex > 0 && !isToggleNext) {
-                    calcPictureIndex = pictureIndex - 1;
-                    calcPositionFrame = parseInt(positionFrame) + WIDTH_FRAME + 'rem';
+                    newPictureIndex = pictureIndex - 1;
+                    newPositionFrame = parseInt(positionFrame) + WIDTH_FRAME + 'rem';
                 }
                 if(pictureIndex === lengthDataSlides && isToggleNext){
-                    calcPictureIndex = 0;
-                    calcPositionFrame = '0rem';
+                    newPictureIndex = 0;
+                    newPositionFrame = '0rem';
                 }
 
             return {
-                pictureIndex: calcPictureIndex,
-                positionFrame: calcPositionFrame,
+                pictureIndex: newPictureIndex,
+                positionFrame: newPositionFrame,
                 isActiveMovePositionFrame: false
                 };
         });
@@ -86,16 +87,14 @@ export default class App extends Component {
 
     handleSwipe = (eventX, eventY) => {
         const { pictureIndex, x, y } = this.state;
-        // console.log('state', x, y)
-        // console.log('func', eventX, eventY)
 
-        const differenceX = Math.abs(eventX - x) ;
-        const differenceY = Math.abs(eventY - y);
+        const differenceX = calcDifference(eventX, x);
+        const differenceY = calcDifference(eventY, y);
 
-        if(differenceX > differenceY && eventX > x){
+        if(differenceX > differenceY && eventX < x){
             return this.onTogglePicture(pictureIndex, true)
         }
-        if(differenceX > differenceY && eventX < x){
+        if(differenceX > differenceY && eventX > x){
             return this.onTogglePicture(pictureIndex, false)
         }
         if(differenceY > differenceX && eventY > y){
@@ -121,10 +120,16 @@ export default class App extends Component {
             });
     }
 
-    movePositionFrame = () => {
-        const { isActiveMovePositionFrame } = this.state;
-        if(isActiveMovePositionFrame === true ){
-            console.log('hi onPointerMove')
+    movePositionFrame = (eventX) => {
+        const { x, isActiveMovePositionFrame, pictureData, positionFrame, pictureIndex } = this.state;
+
+        if( isActiveMovePositionFrame === true ) {
+
+            this.setState(() => {
+                return {
+                    positionFrame: calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex)
+                };
+            });
         }
     }
 
@@ -154,3 +159,5 @@ export default class App extends Component {
         );
     }
 }
+
+export { WIDTH_FRAME };
