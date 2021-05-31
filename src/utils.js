@@ -47,33 +47,59 @@ export function calcDifference(eventValue, stateValue){
     return Math.abs( eventValue - stateValue );
 }
 
-export function calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex){
+export function calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex, amountShowSlides ){
     const differenceX = calcDifference( eventX, x );
-    const movementSize = Math.round(differenceX / 10 );
-    const momentSwitchRight = checkMomentSwitchRight(pictureIndex);
-    const momentSwitchLeft = checkMomentSwitchLeft(pictureIndex);
+    // const movementSize = Math.round(differenceX / 10 );
+    const movementSize = differenceX / 10;
+    const lengthDataSlides = calcLengthDataSlides( pictureData, amountShowSlides );
 
-    console.log('momentSwitchRight', momentSwitchRight, 'momentSwitchLeft', momentSwitchLeft )
+    // console.log('momentSwitchRight', momentSwitchRight, 'momentSwitchLeft', momentSwitchLeft )
     console.log('parseInt(positionFrame)', parseInt(positionFrame) )
 
-        if (eventX < x && pictureIndex < pictureData.length - 1 && parseInt(positionFrame) > momentSwitchRight) {
+        if (eventX < x && pictureIndex < lengthDataSlides) {
             console.log('RIGHT-LEFT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
             console.log('movementSize: ', movementSize)
             return parseInt(positionFrame) - movementSize + 'rem';
         }
-        if (eventX > x && pictureIndex <= pictureData.length - 1 && pictureIndex !== 0 && parseInt(positionFrame) < momentSwitchLeft) {
+        if (eventX > x && pictureIndex <= lengthDataSlides && pictureIndex !== 0) {
             console.log('LEFT-RIGHT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
             console.log('movementSize: ', movementSize)
             return parseInt(positionFrame) + movementSize + 'rem';
         }
             return calcPositionFrame( WIDTH_FRAME, pictureIndex);
 }
-export function checkMomentSwitchRight(pictureIndex){
-   return -(pictureIndex * WIDTH_FRAME + WIDTH_FRAME / 2);
+
+export function checkMomentSwitchRight(pictureData, pictureIndex, positionFrame, amountShowSlides){
+    let momentSwitchRight;
+    const lengthDataSlides = calcLengthDataSlides( pictureData, amountShowSlides );
+    if(pictureIndex < lengthDataSlides){
+        momentSwitchRight = -(pictureIndex * WIDTH_FRAME + WIDTH_FRAME / 2);
+        return parseInt(positionFrame) <= momentSwitchRight;
+    }
+    if(pictureIndex === lengthDataSlides){
+        return false;
+    }
 }
 
-export function checkMomentSwitchLeft(pictureIndex){
-    return -(pictureIndex * WIDTH_FRAME / 2);
+export function checkMomentSwitchLeft(pictureData, pictureIndex, positionFrame, amountShowSlides){
+    let momentSwitchLeft;
+    const lengthDataSlides = calcLengthDataSlides( pictureData, amountShowSlides );
+    if(pictureIndex > 0 && pictureIndex <= lengthDataSlides){
+        momentSwitchLeft = -(pictureIndex * WIDTH_FRAME / 2);
+        return parseInt(positionFrame) >= momentSwitchLeft;
+    }
+    if(pictureIndex === 0){
+        return false;
+    }
+}
+
+export function calcLengthDataSlides( pictureData, amountShowSlides ){
+    if(amountShowSlides === 1){
+        return pictureData.length - 1;
+    }
+    if(amountShowSlides > 1){
+       return Math.floor((pictureData.length - 1) / amountShowSlides);
+    }
 }
 
 export default toggleProperty;

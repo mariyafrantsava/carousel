@@ -43,13 +43,14 @@ const MainView = ({
 
         <div className="mainContainer">
 
-            <div className="carousel"
-                 onPointerDown={(e) => saveCoordinatesSwipe(e.clientX, e.clientY)}
-                 onPointerUp={(e) => handleSwipe(e.clientX, e.clientY)}
-                 onPointerMove={(e) => movePositionFrame(e.clientX)}
-                >
+            <div className="carousel">
 
-                <div className="gallery" style={galleryStyle}>
+                <div className="gallery"
+                     style={galleryStyle}
+                     onPointerDown={(e) => saveCoordinatesSwipe(e.clientX, e.clientY)}
+                     onPointerUp={(e) => handleSwipe(e.clientX, e.clientY)}
+                     onPointerMove={(e) => movePositionFrame(e.clientX)}>
+
                     <div className="slides" style={style}>
                         <Slide
                             picData={picData}

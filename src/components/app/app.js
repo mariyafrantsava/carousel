@@ -3,7 +3,15 @@ import React, { Component } from "react";
 import dataPictures from "../../dataPictures";
 import dataOptions from "../../dataOptions";
 
-import toggleProperty, { calcPositionFrame, calcPictureIndex, calcMovePositionFrame, calcDifference } from '../../utils';
+import toggleProperty, {
+    calcPositionFrame,
+    calcPictureIndex,
+    calcMovePositionFrame,
+    calcDifference,
+    calcLengthDataSlides,
+    checkMomentSwitchRight,
+    checkMomentSwitchLeft
+} from '../../utils';
 
 import './app.scss';
 import MainView from '../mainView';
@@ -30,15 +38,9 @@ export default class App extends Component {
         this.setState(({ pictureData, positionFrame, amountShowSlides }) => {
                 let newPositionFrame;
                 let newPictureIndex;
-                let lengthDataSlides;
+                const lengthDataSlides = calcLengthDataSlides( pictureData, amountShowSlides );
 
-                if(amountShowSlides === 1){
-                    lengthDataSlides = pictureData.length - 1;
-                    positionFrame = calcPositionFrame( WIDTH_FRAME, pictureIndex);
-                }
-                if(amountShowSlides === 2){
-                    lengthDataSlides = Math.floor((pictureData.length - 1) / 2);
-                }
+                positionFrame = calcPositionFrame( WIDTH_FRAME, pictureIndex);
 
                 if(pictureIndex === 0 && !isToggleNext){
                     newPictureIndex = lengthDataSlides;
@@ -121,15 +123,23 @@ export default class App extends Component {
     }
 
     movePositionFrame = (eventX) => {
-        const { x, isActiveMovePositionFrame, pictureData, positionFrame, pictureIndex } = this.state;
-
-        if( isActiveMovePositionFrame === true ) {
+        const { x, isActiveMovePositionFrame, pictureData, positionFrame, pictureIndex, amountShowSlides } = this.state;
+        const momentSwitchRight = checkMomentSwitchRight(pictureData, pictureIndex, positionFrame, amountShowSlides);
+        const momentSwitchLeft = checkMomentSwitchLeft(pictureData, pictureIndex, positionFrame, amountShowSlides);
+        console.log('hi', isActiveMovePositionFrame, 'momentSwitchRight: ', momentSwitchRight, 'momentSwitchLeft: ', momentSwitchLeft  )
+        if( isActiveMovePositionFrame === true && momentSwitchRight === false && momentSwitchLeft === false) {
 
             this.setState(() => {
                 return {
-                    positionFrame: calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex)
+                    positionFrame: calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex, amountShowSlides)
                 };
             });
+        }
+        if(momentSwitchRight){
+            this.onTogglePicture(pictureIndex, true)
+        }
+        if(momentSwitchLeft){
+            this.onTogglePicture(pictureIndex, false)
         }
     }
 
