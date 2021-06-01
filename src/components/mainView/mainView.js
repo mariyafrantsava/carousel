@@ -14,7 +14,8 @@ const MainView = ({
                     handleSwipe,
                     positionFrame,
                     amountShowSlides,
-                    movePositionFrame
+                    movePositionFrame,
+                    infoSwipeUp
 }) => {
 
     let style;
@@ -26,7 +27,7 @@ const MainView = ({
         }
         style = {
             marginLeft: `${positionFrame}`,
-            height: '38.4rem'
+            height: '38rem'
         }
     }
     if(amountShowSlides === 2){
@@ -38,6 +39,9 @@ const MainView = ({
             height: '22.5rem'
         }
     }
+    // if(infoSwipeUp){
+    //
+    // }
 
     return(
 

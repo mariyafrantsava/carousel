@@ -49,21 +49,22 @@ export function calcDifference(eventValue, stateValue){
 
 export function calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex, amountShowSlides ){
     const differenceX = calcDifference( eventX, x );
+    // console.log('differenceX', differenceX)
     // const movementSize = Math.round(differenceX / 10 );
-    const movementSize = differenceX / 10;
+    const movementSize = differenceX / 16;
     const lengthDataSlides = calcLengthDataSlides( pictureData, amountShowSlides );
 
     // console.log('momentSwitchRight', momentSwitchRight, 'momentSwitchLeft', momentSwitchLeft )
-    console.log('parseInt(positionFrame)', parseInt(positionFrame) )
+    // console.log('parseInt(positionFrame)', parseInt(positionFrame) )
 
         if (eventX < x && pictureIndex < lengthDataSlides) {
-            console.log('RIGHT-LEFT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
-            console.log('movementSize: ', movementSize)
+            // console.log('RIGHT-LEFT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
+            // console.log('movementSize: ', movementSize)
             return parseInt(positionFrame) - movementSize + 'rem';
         }
         if (eventX > x && pictureIndex <= lengthDataSlides && pictureIndex !== 0) {
-            console.log('LEFT-RIGHT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
-            console.log('movementSize: ', movementSize)
+            // console.log('LEFT-RIGHT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
+            // console.log('movementSize: ', movementSize)
             return parseInt(positionFrame) + movementSize + 'rem';
         }
             return calcPositionFrame( WIDTH_FRAME, pictureIndex);

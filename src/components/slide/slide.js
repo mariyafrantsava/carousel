@@ -9,12 +9,12 @@ const Slide = ({ picData, amountShowSlides }) => {
     let slideStyle;
     if(amountShowSlides === 1){
         slideStyle = {
-            width: '60rem'
+            width: '60rem',
         }
     }
     if(amountShowSlides === 2){
         slideStyle = {
-            width: '30rem'
+            width: '30rem',
         }
     }
 

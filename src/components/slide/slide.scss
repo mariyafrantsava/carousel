@@ -6,7 +6,8 @@
   background-color: rgba(0,0,0,0.8);
   right: 0.6rem;
   border-radius: 3px 0 0 3px;
-  width: 24rem;
+  width: 22rem;
+  text-align: center;
 }
 
 .textSlide{
@@ -36,6 +37,7 @@
 }
 ::-webkit-scrollbar {
   width: 0.5rem;
+  height: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {

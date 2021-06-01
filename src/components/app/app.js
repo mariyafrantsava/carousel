@@ -30,7 +30,8 @@ export default class App extends Component {
         y: 0,
         amountShowSlides: 1,
         positionFrame: '0rem',
-        isActiveMovePositionFrame: false
+        isActiveMovePositionFrame: false,
+        infoSwipeUp: false
     };
 
     onTogglePicture = (pictureIndex, isToggleNext) => {
@@ -103,7 +104,11 @@ export default class App extends Component {
             return console.log('down')
         }
         if(differenceY > differenceX && eventY < y){
-            return console.log('up')
+            this.setState(({infoSwipeUp}) => {
+                return{
+                    infoSwipeUp: true
+                };
+            });
         }
         this.setState(({isActiveMovePositionFrame}) => {
             return{
@@ -126,8 +131,9 @@ export default class App extends Component {
         const { x, isActiveMovePositionFrame, pictureData, positionFrame, pictureIndex, amountShowSlides } = this.state;
         const momentSwitchRight = checkMomentSwitchRight(pictureData, pictureIndex, positionFrame, amountShowSlides);
         const momentSwitchLeft = checkMomentSwitchLeft(pictureData, pictureIndex, positionFrame, amountShowSlides);
-        console.log('hi', isActiveMovePositionFrame, 'momentSwitchRight: ', momentSwitchRight, 'momentSwitchLeft: ', momentSwitchLeft  )
+        // console.log('hi', isActiveMovePositionFrame, 'momentSwitchRight: ', momentSwitchRight, 'momentSwitchLeft: ', momentSwitchLeft  )
         if( isActiveMovePositionFrame === true && momentSwitchRight === false && momentSwitchLeft === false) {
+        // if( isActiveMovePositionFrame === true ) {
 
             this.setState(() => {
                 return {
@@ -145,7 +151,7 @@ export default class App extends Component {
 
 
     render() {
-        const { pictureData, optionData, pictureIndex, positionFrame, amountShowSlides } = this.state;
+        const { pictureData, optionData, pictureIndex, positionFrame, amountShowSlides, infoSwipeUp } = this.state;
         return(
             <div>
                 <h2 className="title">Carousel</h2>
@@ -164,6 +170,7 @@ export default class App extends Component {
                     positionFrame={positionFrame}
                     amountShowSlides={amountShowSlides}
                     movePositionFrame={ this.movePositionFrame }
+                    infoSwipeUp={ infoSwipeUp }
                     />
             </div>
         );
