@@ -155,11 +155,13 @@ export default class App extends Component {
         const {pictureData, optionData, pictureIndex, positionFrame, amountShowSlides, infoSwipeUp} = this.state;
         return (
             <div>
-                <h2 className="title">Carousel</h2>
-                <SelectShowSlides
-                    optionData={optionData}
-                    amountShowSlides={amountShowSlides}
-                    changeAmountShowSlides={this.changeAmountShowSlides}/>
+                <div className="titleBlock">
+                    <h2 className="title">Carousel</h2>
+                    <SelectShowSlides
+                        optionData={optionData}
+                        amountShowSlides={amountShowSlides}
+                        changeAmountShowSlides={this.changeAmountShowSlides}/>
+                </div>
                 <MainView
                     picData={pictureData}
                     onToggleNext={() => this.onTogglePicture(pictureIndex, true)}
