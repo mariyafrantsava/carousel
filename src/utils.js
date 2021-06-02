@@ -49,18 +49,15 @@ export function calcDifference(eventValue, stateValue){
 
 export function calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex, amountShowSlides, moveX, movementSize ){
 
-    console.log('movementSize33333', movementSize)
     const lengthDataSlides = calcLengthDataSlides( pictureData, amountShowSlides )
 
-        if (eventX < x && pictureIndex < lengthDataSlides) {
-            // console.log('RIGHT-LEFT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
-            return parseInt(positionFrame) - movementSize + 'rem';
-        }
-        if (eventX > x && pictureIndex <= lengthDataSlides && pictureIndex !== 0) {
-            // console.log('LEFT-RIGHT', 'eventX: ', eventX, 'x: ', x, 'pictureIndex: ', pictureIndex)
-            return parseInt(positionFrame) + movementSize + 'rem';
-        }
-            return calcPositionFrame( WIDTH_FRAME, pictureIndex);
+    if (eventX < x && pictureIndex < lengthDataSlides) {
+        return parseInt(positionFrame) - movementSize + 'rem';
+    }
+    if (eventX > x && pictureIndex <= lengthDataSlides && pictureIndex !== 0) {
+        return parseInt(positionFrame) + movementSize + 'rem';
+    }
+        return calcPositionFrame( WIDTH_FRAME, pictureIndex);
 }
 
 export function checkMomentSwitchRight(pictureData, pictureIndex, positionFrame, amountShowSlides){

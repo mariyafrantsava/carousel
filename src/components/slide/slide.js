@@ -6,17 +6,9 @@ const IMAGE_PATH = 'public/assets/images/';
 
 const Slide = ({ picData, amountShowSlides }) => {
 
-    let slideStyle;
-    if(amountShowSlides === 1){
-        slideStyle = {
-            width: '60rem',
-        }
-    }
-    if(amountShowSlides === 2){
-        slideStyle = {
-            width: '30rem',
-        }
-    }
+    const slideStyle= {
+        width: 60 / amountShowSlides +'rem',
+    };
 
     const elements = picData.map((item) => {
         const{ id, text, imageSrc, nameSlide } = item;

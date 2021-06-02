@@ -1,9 +1,16 @@
+$bg-color-transparent: rgba(0,0,0,0.8);
+$bg-grey: #f1f1f1;
+$bg-light-grey: #f2f2f2;
+$bg-text-slide: #00000080;
+$bg-text-color: #ffffffba;
+$bg-thumb-scroll: #888;
+
 .numberSlide {
-  color: #f2f2f2;
+  color: $bg-light-grey;
   font-family: 'Roboto', sans-serif;
   padding: 0.3rem 0.6rem;
   bottom: 6.3rem;
-  background-color: rgba(0,0,0,0.8);
+  background-color: $bg-color-transparent;
   right: 0.6rem;
   border-radius: 3px 0 0 3px;
   width: 22rem;
@@ -11,8 +18,8 @@
 }
 
 .textSlide{
-  color: #ffffffba;
-  background-color: #00000080;
+  color: $bg-text-color;
+  background-color: $bg-text-slide;
   padding: 1rem;
   overflow: scroll;
   overflow-x: hidden;
@@ -28,8 +35,8 @@
   column-gap: 1rem;
 }
 .nameSlide{
-  background-color: rgba(0,0,0,0.8);
-  color: #f1f1f1;
+  background-color: $bg-color-transparent;
+  color: $bg-grey;
   padding: 1rem 1rem;
   font-size: 2rem;
   display: flex;
@@ -41,9 +48,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: $bg-thumb-scroll;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: $bg-grey;
 }

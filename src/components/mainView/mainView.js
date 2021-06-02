@@ -14,43 +14,18 @@ const MainView = ({
                     handleSwipe,
                     positionFrame,
                     amountShowSlides,
-                    movePositionFrame,
-                    infoSwipeUp
+                    movePositionFrame
 }) => {
 
-    let style;
-    let galleryStyle;
-
-    if(amountShowSlides === 1){
-        galleryStyle = {
-            width: '60rem'
-        }
-        style = {
-            marginLeft: `${positionFrame}`,
-            height: '38rem'
-        }
+    const style = {
+        marginLeft: `${positionFrame}`,
+        height: amountShowSlides === 1 ? 38 + 'rem' : 22.5 + 'rem'
     }
-    if(amountShowSlides === 2){
-        galleryStyle = {
-            width: '60rem'
-        }
-        style = {
-            marginLeft: `${positionFrame}`,
-            height: '22.5rem'
-        }
-    }
-    // if(infoSwipeUp){
-    //
-    // }
 
     return(
-
         <div className="mainContainer">
-
             <div className="carousel">
-
                 <div className="gallery"
-                     style={galleryStyle}
                      onPointerDown={(e) => saveCoordinatesSwipe(e.clientX, e.clientY)}
                      onPointerUp={(e) => handleSwipe(e.clientX, e.clientY)}
                      onPointerMove={(e) => movePositionFrame(e.clientX)}>

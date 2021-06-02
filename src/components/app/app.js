@@ -31,19 +31,16 @@ export default class App extends Component {
         amountShowSlides: 1,
         positionFrame: '0rem',
         isActiveMovePositionFrame: false,
-        infoSwipeUp: false,
         moveX: 0,
         finishMove: false
     };
 
     onTogglePicture = (pictureIndex, isToggleNext) => {
-
-        this.setState(({pictureData, positionFrame, amountShowSlides}) => {
+        this.setState(({ pictureData, amountShowSlides }) => {
             let newPositionFrame;
             let newPictureIndex;
             const lengthDataSlides = calcLengthDataSlides(pictureData, amountShowSlides);
-
-            positionFrame = calcPositionFrame(WIDTH_FRAME, pictureIndex);
+            const positionFrame = calcPositionFrame(WIDTH_FRAME, pictureIndex);
 
             if (pictureIndex === 0 && !isToggleNext) {
                 newPictureIndex = lengthDataSlides;
@@ -81,7 +78,7 @@ export default class App extends Component {
     };
 
     saveCoordinatesSwipe = (eX, eY) => {
-        this.setState(({isActiveMovePositionFrame}) => {
+        this.setState(() => {
             return {
                 x: eX,
                 y: eY,
@@ -97,28 +94,8 @@ export default class App extends Component {
         if(finishMove === false){
             const differenceX = calcDifference(eventX, x);
             const differenceY = calcDifference(eventY, y);
-
-            if (differenceX > differenceY && eventX < x) {
-                return this.onTogglePicture(pictureIndex, true)
-            }
-            if (differenceX > differenceY && eventX > x) {
-                return this.onTogglePicture(pictureIndex, false)
-            }
-            if (differenceY > differenceX && eventY > y) {
-                return console.log('down')
-            }
-            if (differenceY > differenceX && eventY < y) {
-                this.setState(({infoSwipeUp}) => {
-                    return {
-                        infoSwipeUp: true
-                    };
-                });
-            }
-            this.setState(({isActiveMovePositionFrame}) => {
-                return {
-                    isActiveMovePositionFrame: false
-                };
-            });
+            const isToggleRight = differenceX > differenceY && eventX < x;
+            return this.onTogglePicture(pictureIndex, isToggleRight);
         }else{
             this.setState(() => {
                 return {
@@ -150,39 +127,27 @@ export default class App extends Component {
         } = this.state;
         const momentSwitchRight = checkMomentSwitchRight(pictureData, pictureIndex, positionFrame, amountShowSlides);
         const momentSwitchLeft = checkMomentSwitchLeft(pictureData, pictureIndex, positionFrame, amountShowSlides);
-
-        if( isActiveMovePositionFrame === true && momentSwitchRight === false && momentSwitchLeft === false) {
-            // if (isActiveMovePositionFrame === true) {
-            const differenceX = calcDifference(eventX, moveX);
-            console.log('differenceX!!!', differenceX)
-            if (differenceX < 480 && eventX < 960 ) {
-                const movementSize = differenceX * 2;
-                console.log('movementSizeX2!!!', movementSize)
-
-                this.setState(() => {
-                    return {
-                        positionFrame: calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex, amountShowSlides, moveX, movementSize),
-                        moveX: eventX
-                    };
-                });
-            }
+        if (!isActiveMovePositionFrame) {
+            return;
         }
-        if(momentSwitchRight){
-            this.onTogglePicture(pictureIndex, true)
+
+        if( momentSwitchRight === false && momentSwitchLeft === false) {
+            const movementSize = calcDifference(eventX, moveX) * 2;
             this.setState(() => {
                 return {
-                    finishMove: true
+                    positionFrame: calcMovePositionFrame(eventX, x, pictureData, positionFrame, pictureIndex, amountShowSlides, moveX, movementSize),
+                    moveX: eventX
                 };
             });
+            return;
         }
-        if(momentSwitchLeft){
-            this.onTogglePicture(pictureIndex, false)
-            this.setState(() => {
-                return {
-                    finishMove: true
-                };
-            });
-        }
+
+        this.onTogglePicture(pictureIndex, momentSwitchRight)
+        this.setState(() => {
+            return {
+                finishMove: true
+            };
+        });
     }
 
 
@@ -206,7 +171,6 @@ export default class App extends Component {
                     positionFrame={positionFrame}
                     amountShowSlides={amountShowSlides}
                     movePositionFrame={this.movePositionFrame}
-                    infoSwipeUp={infoSwipeUp}
                 />
             </div>
         );
