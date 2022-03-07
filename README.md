@@ -25,4 +25,12 @@
   ```bash
   $ npm run build
   ```
+#### The following requirements have been met:
+* Must be animated swipes, you can use an Instagram post with multiple images as a reference.
+* Supports multiple slides per screen
+* Must support swipes
+* Supports scrolling to the selected slide (e.g. slide X)
+* Should work on mobile and desktop devices
+* Should work for any HTML content
+* Supports infinite option
 
